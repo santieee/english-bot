@@ -1,0 +1,25 @@
+ 
+version: "3"
+
+services:
+  english-bot:
+    image: spone789/english-bot:latest
+    container_name: english-bot
+    restart: always
+    environment:
+      - DB_HOST=postgres
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    links:
+      - postgres:postgres
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=spone
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - 5432:5432
